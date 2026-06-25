@@ -1,0 +1,144 @@
+:root {
+  color-scheme: dark;
+  --bg: #08111f;
+  --bg-elevated: #0c1728;
+  --surface: rgba(17, 31, 51, 0.88);
+  --surface-solid: #111f33;
+  --surface-2: #162740;
+  --surface-3: #1d3150;
+  --border: rgba(145, 174, 211, 0.14);
+  --border-strong: rgba(145, 174, 211, 0.24);
+  --text: #edf4ff;
+  --text-muted: #8fa3bf;
+  --text-subtle: #667995;
+  --primary: #5c91ed;
+  --primary-strong: #3978df;
+  --primary-soft: rgba(92, 145, 237, 0.14);
+  --green: #3ccf91;
+  --green-soft: rgba(60, 207, 145, 0.13);
+  --orange: #e9a654;
+  --orange-soft: rgba(233, 166, 84, 0.14);
+  --red: #ef6b73;
+  --red-soft: rgba(239, 107, 115, 0.14);
+  --purple: #9f86ff;
+  --purple-soft: rgba(159, 134, 255, 0.14);
+  --gray: #8391a7;
+  --gray-soft: rgba(131, 145, 167, 0.14);
+  --cyan: #4cc9d8;
+  --cyan-soft: rgba(76, 201, 216, 0.14);
+  --shadow: 0 18px 42px rgba(0, 0, 0, 0.24);
+  --shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.18);
+  --radius-xl: 22px;
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 9px;
+  --sidebar-width: 260px;
+  --sidebar-collapsed: 82px;
+  --header-height: 76px;
+  --transition: 180ms ease;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: #eef3f9;
+  --bg-elevated: #f7f9fc;
+  --surface: rgba(255, 255, 255, 0.88);
+  --surface-solid: #ffffff;
+  --surface-2: #f3f6fa;
+  --surface-3: #e8eef6;
+  --border: rgba(38, 62, 92, 0.11);
+  --border-strong: rgba(38, 62, 92, 0.19);
+  --text: #142237;
+  --text-muted: #60738d;
+  --text-subtle: #8998aa;
+  --primary-soft: rgba(57, 120, 223, 0.1);
+  --shadow: 0 18px 42px rgba(51, 73, 102, 0.1);
+  --shadow-soft: 0 8px 24px rgba(51, 73, 102, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 82% 4%, rgba(55, 116, 218, 0.12), transparent 30%),
+    radial-gradient(circle at 15% 90%, rgba(60, 207, 145, 0.06), transparent 28%),
+    var(--bg);
+  color: var(--text);
+  font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  transition: background var(--transition), color var(--transition);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button,
+a,
+select,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+svg {
+  display: block;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.icon {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+::selection {
+  background: rgba(92, 145, 237, 0.32);
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--surface-3);
+  border: 2px solid transparent;
+  border-radius: 99px;
+  background-clip: padding-box;
+}
