@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Enterprise Infrastructure Operations Portal">
+  <title>EIOP · Dashboard</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/charts.css">
+  <link rel="stylesheet" href="css/table.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script defer src="js/excel.js"></script>
+  <script defer src="js/charts.js"></script>
+  <script defer src="js/app.js"></script>
+  <script defer src="js/dashboard.js"></script>
+</head>
+<body data-page="dashboard">
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Primary navigation">
+      <div class="sidebar-brand">
+        <div class="brand-mark"><svg class="icon" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="6" rx="2"/><rect x="4" y="15" width="16" height="6" rx="2"/><path d="M8 6h.01M8 18h.01M12 9v6"/></svg></div>
+        <div class="brand-copy"><strong>EIOP</strong><span>Infrastructure Operations</span></div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-label">Operations</div>
+        <a class="nav-link active" href="index.html"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span>Dashboard</span></a>
+        <a class="nav-link" href="servers.html"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/><path d="M7 7h.01M7 17h.01"/></svg><span>Servers</span></a>
+        <a class="nav-link" href="reports.html"><svg class="icon" viewBox="0 0 24 24"><path d="M4 19V9M10 19V5M16 19v-7M22 19V3"/></svg><span>Reports</span></a>
+        <a class="nav-link" href="settings.html"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.8 1.8 0 0 0 .4 2l.1.1-2.8 2.8-.1-.1a1.8 1.8 0 0 0-2-.4 1.8 1.8 0 0 0-1 1.6V21h-4v-.1a1.8 1.8 0 0 0-1-1.6 1.8 1.8 0 0 0-2 .4l-.1.1-2.8-2.8.1-.1a1.8 1.8 0 0 0 .4-2 1.8 1.8 0 0 0-1.6-1H3v-4h.1a1.8 1.8 0 0 0 1.6-1 1.8 1.8 0 0 0-.4-2l-.1-.1L7 4l.1.1a1.8 1.8 0 0 0 2 .4 1.8 1.8 0 0 0 1-1.6V3h4v.1a1.8 1.8 0 0 0 1 1.6 1.8 1.8 0 0 0 2-.4l.1-.1L20 7l-.1.1a1.8 1.8 0 0 0-.4 2 1.8 1.8 0 0 0 1.6 1h.1v4h-.1a1.8 1.8 0 0 0-1.7.9Z"/></svg><span>Settings</span></a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="sidebar-system"><span class="status-pulse"></span><div><strong>Platform operational</strong><span>Version 1.0</span></div></div>
+        <button class="collapse-button" id="sidebarCollapse" type="button"><svg class="icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg><span>Collapse sidebar</span></button>
+      </div>
+    </aside>
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+    <div class="main-area">
+      <header class="topbar">
+        <button class="icon-button mobile-menu-button" id="mobileMenuButton" type="button" aria-label="Open navigation"><svg class="icon" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+        <label class="global-search"><span class="sr-only">Search infrastructure</span><svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="globalSearch" type="search" placeholder="Search infrastructure…"></label>
+        <div class="topbar-meta">
+          <span class="current-date" id="currentDate"></span>
+          <button class="icon-button notification-button" type="button" aria-label="Notifications"><svg class="icon" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 8h18c0-1-3-1-3-8"/><path d="M10 20h4"/></svg><span class="notification-dot"></span></button>
+          <button class="icon-button theme-button" id="themeButton" type="button" aria-label="Switch theme"></button>
+          <div class="profile"><div class="avatar">OP</div><div class="profile-copy"><strong>Operations Admin</strong><span>Infrastructure Engineering</span></div></div>
+        </div>
+      </header>
+      <main class="page">
+        <section class="page-heading">
+          <div><p class="eyebrow">Operations overview</p><h1>Infrastructure Command Center</h1><p>Real-time posture and distribution of enterprise compute assets across environments.</p></div>
+          <div class="status-line"><span class="live-dot"></span>Workbook data synchronized</div>
+        </section>
+        <section class="kpi-grid" aria-label="Infrastructure key performance indicators">
+          <article class="kpi-card kpi-total"><div class="kpi-icon"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/></svg></div><strong class="kpi-value" data-kpi="total">0</strong><span class="kpi-label">Total Servers</span></article>
+          <article class="kpi-card kpi-running"><div class="kpi-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2v10"/><path d="M6.3 5.6a8 8 0 1 0 11.4 0"/></svg></div><strong class="kpi-value" data-kpi="running">0</strong><span class="kpi-label">Running</span></article>
+          <article class="kpi-card kpi-powered"><div class="kpi-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2v10"/><path d="M6.3 5.6a8 8 0 1 0 11.4 0"/></svg></div><strong class="kpi-value" data-kpi="powered">0</strong><span class="kpi-label">Powered Off</span></article>
+          <article class="kpi-card kpi-maintenance"><div class="kpi-icon"><svg class="icon" viewBox="0 0 24 24"><path d="m14.7 6.3 3-3a3.5 3.5 0 0 1-4.6 4.6l-7.8 7.8a2.1 2.1 0 0 0 3 3l7.8-7.8a3.5 3.5 0 0 1 4.6-4.6l-3 3"/></svg></div><strong class="kpi-value" data-kpi="maintenance">0</strong><span class="kpi-label">Maintenance</span></article>
+          <article class="kpi-card kpi-patching"><div class="kpi-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="8"/></svg></div><strong class="kpi-value" data-kpi="patching">0</strong><span class="kpi-label">Patching</span></article>
+          <article class="kpi-card kpi-cloud"><div class="kpi-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M17.5 19H6a4 4 0 0 1-.5-8A7 7 0 0 1 19 9a5 5 0 0 1-1.5 10Z"/></svg></div><strong class="kpi-value" data-kpi="cloud">0</strong><span class="kpi-label">Cloud</span></article>
+          <article class="kpi-card kpi-decommissioned"><div class="kpi-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M19 6l-1 15H6L5 6M10 11v5M14 11v5"/></svg></div><strong class="kpi-value" data-kpi="decommissioned">0</strong><span class="kpi-label">Decommissioned</span></article>
+        </section>
+        <section class="dashboard-grid">
+          <article class="panel chart-panel"><div class="panel-header"><div><h2 class="panel-title">Server Status Distribution</h2><p class="panel-subtitle">Operational state across the managed estate</p></div></div><div class="chart-body"><canvas id="statusChart"></canvas></div></article>
+          <article class="panel activity-panel"><div class="panel-header"><div><h2 class="panel-title">Attention Queue</h2><p class="panel-subtitle">Assets requiring operational awareness</p></div></div><div class="activity-list" id="activityList"></div></article>
+          <article class="health-strip"><div class="health-item"><span>Availability</span><strong>99.92%</strong><small>Within SLO</small></div><div class="health-item"><span>Patch compliance</span><strong>91.4%</strong><small>+2.1% this cycle</small></div><div class="health-item"><span>Coverage</span><strong>100%</strong><small>Inventory synchronized</small></div></article>
+        </section>
+        <section class="charts-row">
+          <article class="panel chart-panel"><div class="panel-header"><div><h2 class="panel-title">Environment Distribution</h2><p class="panel-subtitle">Compute allocation by lifecycle tier</p></div></div><div class="chart-body"><canvas id="environmentChart"></canvas></div></article>
+          <article class="panel chart-panel"><div class="panel-header"><div><h2 class="panel-title">Operating System Distribution</h2><p class="panel-subtitle">Platform footprint by operating system family</p></div></div><div class="chart-body"><canvas id="osChart"></canvas></div></article>
+        </section>
+      </main>
+      <footer class="footer"><span>Enterprise Infrastructure Operations Portal</span><span>Version 1.0 · Internal Operations</span></footer>
+    </div>
+  </div>
+  <div class="loading-overlay" id="loadingOverlay"><div class="loader-card"><div class="loader-ring"></div><h2>Loading infrastructure inventory</h2><p id="loadingMessage">Reading data/servers.xlsx…</p><div class="file-fallback" id="fileFallback" hidden><label class="button button-primary" for="workbookInput">Select servers.xlsx</label><input id="workbookInput" type="file" accept=".xlsx,.xls"></div></div></div>
+  <div class="toast-region" id="toastRegion" aria-live="polite"></div>
+</body>
+</html>
